@@ -20,7 +20,7 @@ class Solution {
                 case 'N':
                     yPos+=Y_INC;
                     break;
-                case 'W':
+                case 'S':
                     yPos-=Y_INC;
                     break;
                 case 'E':
