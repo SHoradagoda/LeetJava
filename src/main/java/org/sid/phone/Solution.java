@@ -1,8 +1,7 @@
 package org.sid.phone;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class Solution {
@@ -18,18 +17,23 @@ class Solution {
         put('9', new Character[]{'w', 'x','y', 'z'});
     }};
     public List<String> letterCombinations(String digits) {
+        if ( digits.length() == 0) {
+            return List.of();
+        }
+        List<String> results = new ArrayList<>();
+        backTrack("", digits, results);
+        return results;
+    }
 
-        char[] chars = digits.toCharArray();
-        if ( chars.length == 1) {
-            return Stream.of(mapping.get(chars[0]))
+    void backTrack ( String head, String tail, List<String> results ){
+        if (tail.length() ==0){
+            results.add(head);
+            return;
         }
-        for (int i=0;i< chars.length;i++) {
-            Character[] first = mapping.get (chars[i]);
-            for (int j=i+1;j < chars.length;j++) {
-                Char
-            }
+        List<String> first = Stream.of( mapping.get(tail.charAt(0))).map(x -> head + x).collect(Collectors.toList());
+        for ( String f : first) {
+            backTrack(f, tail.substring(1), results);
         }
-        return null;
     }
 
 }
